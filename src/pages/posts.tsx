@@ -62,17 +62,17 @@ const ProfilePage: React.FC = () => {
                               name={`posts.${index}.title`}
                               as={TextField}
                               label="Title"
-                              InputProps={{ style: { color: 'white' } }}
-                              InputLabelProps={{ style: { color: 'darkgray' } }}
-                              style={{ color: 'white', marginRight: '1rem', flex: 1 }}
+                              InputProps={{ style: { color: 'black' } }}
+                              InputLabelProps={{ style: { color: 'black' } }}
+                              style={{ color: 'black', marginRight: '1rem', flex: 1 }}
                             />
                             <Field
                               name={`posts.${index}.content`}
                               as={TextField}
                               label="Content"
-                              InputProps={{ style: { color: 'white' } }}
-                              InputLabelProps={{ style: { color: 'darkgray' } }}
-                              style={{ color: 'white', marginRight: '1rem', flex: 2 }}
+                              InputProps={{ style: { color: 'black' } }}
+                              InputLabelProps={{ style: { color: 'black' } }}
+                              style={{ color: 'black', marginRight: '1rem', flex: 2 }}
                             />
                             <IconButton
                               onClick={() => remove(index)}
