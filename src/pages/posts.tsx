@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Container, Typography, TextField, Button, IconButton } from '@mui/material';
+import { Container, Typography, TextField, Button, IconButton, Card, CardContent, Box } from '@mui/material';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import useSWR, { mutate } from 'swr';
 import axios from 'axios';
@@ -32,7 +32,7 @@ const ProfilePage: React.FC = () => {
   return (
     <Main>
       <Container className='w-1/2 justify-start'>
-        <Typography variant="h4">Posts</Typography>
+        <Typography variant="h4" gutterBottom>Posts</Typography>
         <Formik
           initialValues={{ posts: data.post }}
           onSubmit={(values, actions) => {
@@ -55,36 +55,41 @@ const ProfilePage: React.FC = () => {
                 {({ push, remove }) => (
                   <div>
                     {values.posts.map((post, index) => (
-                      <div key={index} style={{ marginBottom: '1rem' }}>
-                        <Field
-                          name={`posts.${index}.title`}
-                          as={TextField}
-                          label="Title"
-                          InputProps={{ style: { color: 'white' } }}
-                          InputLabelProps={{ style: { color: 'darkgray' } }}
-                          style={{ color: 'white', marginRight: '1rem' }}
-                        />
-                        <Field
-                          name={`posts.${index}.content`}
-                          as={TextField}
-                          label="Content"
-                          InputProps={{ style: { color: 'white' } }}
-                          InputLabelProps={{ style: { color: 'darkgray' } }}
-                          style={{ color: 'white', marginRight: '1rem' }}
-                        />
-                        <IconButton
-                          onClick={() => remove(index)}
-                          aria-label="delete"
-                          color="secondary"
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </div>
+                      <Card key={index} variant="outlined" style={{ marginBottom: '1rem' }}>
+                        <CardContent>
+                          <Box display="flex" alignItems="center">
+                            <Field
+                              name={`posts.${index}.title`}
+                              as={TextField}
+                              label="Title"
+                              InputProps={{ style: { color: 'white' } }}
+                              InputLabelProps={{ style: { color: 'darkgray' } }}
+                              style={{ color: 'white', marginRight: '1rem', flex: 1 }}
+                            />
+                            <Field
+                              name={`posts.${index}.content`}
+                              as={TextField}
+                              label="Content"
+                              InputProps={{ style: { color: 'white' } }}
+                              InputLabelProps={{ style: { color: 'darkgray' } }}
+                              style={{ color: 'white', marginRight: '1rem', flex: 2 }}
+                            />
+                            <IconButton
+                              onClick={() => remove(index)}
+                              aria-label="delete"
+                              color="secondary"
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </Box>
+                        </CardContent>
+                      </Card>
                     ))}
                     <Button
                       variant="contained"
                       color="primary"
                       onClick={() => push({ title: '', content: '' })}
+                      style={{ marginTop: '1rem' }}
                     >
                       Add Post
                     </Button>
